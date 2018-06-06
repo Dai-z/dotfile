@@ -88,16 +88,17 @@ source $ZSH/oh-my-zsh.sh
 
 #ROS
 source /opt/ros/kinetic/setup.zsh
-export PYTHONPATH=${PYTHONPATH}:/usr/lib/python2.7/dist-packages
 export ZJUDANCER_ROBOTID=6
 export ZJUDANCER_GUI=1
 export ZJUDANCER_GPU=0
-export ZJUDANCER_SIMULATION=true
-source $HOME/humanoid/devel/setup.zsh
-#source $HOME/humanoid-lib/devel/setup.zsh
+export EDITOR='nvim' 
+# source $HOME/humanoid/devel/setup.zsh
+# source $HOME/humanoid-lib/devel/setup.zsh
+# source $HOME/dancer-workspace/workspaces/core/devel/setup.zsh
+source $HOME/dancer-workspace/.zshrc.dancer
 alias rcd='roscd'
 alias e='rosed'
-alias rmk='catkin_make -j1 -l1'
+alias rmk='catkin_make -j4'
 alias rt="catkin_make run_tests"
 alias rpkg='catkin_create_pkg'
 alias rcore='roscore &'
@@ -106,3 +107,9 @@ alias rr='rosrun'
 alias sc='source ~/.zshrc'
 alias tks='tmux kill-server'
 alias sr='source devel/setup.zsh'
+alias v='nvim'
+alias zc='v ~/.zshrc'
+alias setproxy="export ALL_PROXY=socks5://127.0.0.1:1080"
+alias unsetproxy="unset ALL_PROXY"
+alias t='tmux'
+alias ssh='ssh -X'
