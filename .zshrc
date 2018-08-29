@@ -1,4 +1,4 @@
-export ZSH=/home/daiz/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 export PATH=$PATH:~/.local/bin:/usr/java/bin
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -8,8 +8,10 @@ export PATH=$PATH:~/.local/bin:/usr/java/bin
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
-#ZSH_THEME="af-magic"
+#ZSH_THEME="avit"
+#ZSH_THEME="steeef"
+ZSH_THEME="tjkirch"
+#ZSH_THEME="ys"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -92,6 +94,7 @@ export ZJUDANCER_ROBOTID=6
 export ZJUDANCER_GUI=1
 export ZJUDANCER_GPU=0
 export EDITOR='nvim' 
+export PATH=/home/daiz/Software/miniconda3/bin:$PATH
 # source $HOME/humanoid/devel/setup.zsh
 # source $HOME/humanoid-lib/devel/setup.zsh
 # source $HOME/dancer-workspace/workspaces/core/devel/setup.zsh
@@ -113,3 +116,4 @@ alias setproxy="export ALL_PROXY=socks5://127.0.0.1:1080"
 alias unsetproxy="unset ALL_PROXY"
 alias t='tmux'
 alias ssh='ssh -X'
+. /home/daiz/Software/miniconda3/etc/profile.d/conda.sh
