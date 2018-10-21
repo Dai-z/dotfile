@@ -10,7 +10,7 @@ export PATH=$PATH:~/.local/bin:/usr/java/bin
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 #ZSH_THEME="avit"
 #ZSH_THEME="steeef"
-ZSH_THEME="tjkirch"
+ZSH_THEME="cxx"
 #ZSH_THEME="ys"
 
 # Uncomment the following line to use case-sensitive completion.
@@ -55,7 +55,7 @@ ZSH_THEME="tjkirch"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -89,16 +89,17 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 #ROS
-source /opt/ros/kinetic/setup.zsh
+# source /opt/ros/kinetic/setup.zsh
 export ZJUDANCER_ROBOTID=6
 export ZJUDANCER_GUI=1
 export ZJUDANCER_GPU=0
 export EDITOR='nvim' 
-export PATH=/home/daiz/Software/miniconda3/bin:$PATH
+export TERM=xterm-256color
+# export PATH=/usr/local/cuda/bin:/home/daiz/Software/miniconda3/bin:$PATH
 # source $HOME/humanoid/devel/setup.zsh
 # source $HOME/humanoid-lib/devel/setup.zsh
 # source $HOME/dancer-workspace/workspaces/core/devel/setup.zsh
-source $HOME/dancer-workspace/.zshrc.dancer
+# source $HOME/dancer-workspace/.zshrc.dancer
 alias rcd='roscd'
 alias e='rosed'
 alias rmk='catkin_make -j4'
@@ -108,12 +109,17 @@ alias rcore='roscore &'
 alias rl='roslaunch'
 alias rr='rosrun'
 alias sc='source ~/.zshrc'
+alias sr='source /opt/ros/kinetic/setup.zsh'
+alias sd='source $HOME/dancer-workspace/.zshrc.dancer'
 alias tks='tmux kill-server'
-alias sr='source devel/setup.zsh'
 alias v='nvim'
 alias zc='v ~/.zshrc'
 alias setproxy="export ALL_PROXY=socks5://127.0.0.1:1080"
 alias unsetproxy="unset ALL_PROXY"
 alias t='tmux'
 alias ssh='ssh -X'
+alias cona='conda activate'
+alias cond='conda deactivate'
 . /home/daiz/Software/miniconda3/etc/profile.d/conda.sh
+export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
+export PYTHONPATH=$PYTHONPATH:$HOME/cv/models/research/:$HOME/cv/models/research/slim
