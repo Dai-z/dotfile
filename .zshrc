@@ -1,5 +1,5 @@
 export ZSH=$HOME/.oh-my-zsh
-export PATH=$PATH:~/.local/bin:/usr/java/bin
+export PATH=$PATH:~/.local/bin:/usr/java/bin:$HOME/miniconda2/bin
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -95,7 +95,6 @@ export ZJUDANCER_GUI=1
 export ZJUDANCER_GPU=0
 export EDITOR='nvim' 
 export TERM=xterm-256color
-# export PATH=/usr/local/cuda/bin:/home/daiz/Software/miniconda3/bin:$PATH
 # source $HOME/humanoid/devel/setup.zsh
 # source $HOME/humanoid-lib/devel/setup.zsh
 # source $HOME/dancer-workspace/workspaces/core/devel/setup.zsh
@@ -117,9 +116,11 @@ alias zc='v ~/.zshrc'
 alias setproxy="export ALL_PROXY=socks5://127.0.0.1:1080"
 alias unsetproxy="unset ALL_PROXY"
 alias t='tmux'
+alias ta='tmux attach -t'
 alias ssh='ssh -X'
 alias cona='conda activate'
 alias cond='conda deactivate'
-. /home/daiz/Software/miniconda3/etc/profile.d/conda.sh
-export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
-export PYTHONPATH=$PYTHONPATH:$HOME/cv/models/research/:$HOME/cv/models/research/slim
+. $HOME/miniconda2/etc/profile.d/conda.sh
+# Path for cuda
+export LD_LIBRARY_PATH=/usr/local/cuda-9.0/lib64:$LD_LIBRARY_PATH
+export PATH=/usr/local/cuda-9.0/bin:$PATH
