@@ -1,5 +1,6 @@
 export ZSH=$HOME/.oh-my-zsh
-export PATH=$PATH:~/.local/bin:/usr/java/bin:$HOME/miniconda2/bin
+export PATH=$PATH:~/.local/bin:/usr/java/bin #:$HOME/miniconda2/bin
+export PYTHONPATH=$PYTHONPATH:$HOME/caffe/python
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -84,16 +85,26 @@ source $ZSH/oh-my-zsh.sh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+rto () {
+    dsthost=$1
+    port=$2
+    relpath=$(pwd | sed "s#$HOME#\$HOME#g")
+    parentdir=$(dirname $(pwd) | sed "s#$HOME#\$HOME#g")
+
+    echo "rsync $relpath to $dsthost:$relpath ..."
+    if [ -e "$(pwd)/exclude.txt" ] ; then
+        rsync -avzP --exclude-from="$(pwd)/exclude.txt" -e "ssh -p $port" $(pwd) $dsthost:$parentdir
+    else
+        rsync -avzP -e "ssh -p $port" $(pwd) $dsthost:$parentdir
+    fi
+}
 
 #ROS
 # source /opt/ros/kinetic/setup.zsh
-export ZJUDANCER_ROBOTID=6
+export ZJUDANCER_ROBOTID=2
 export ZJUDANCER_GUI=1
 export ZJUDANCER_GPU=0
-export EDITOR='nvim' 
+export EDITOR='nvim'
 export TERM=xterm-256color
 # source $HOME/humanoid/devel/setup.zsh
 # source $HOME/humanoid-lib/devel/setup.zsh
@@ -113,14 +124,15 @@ alias sd='source $HOME/dancer-workspace/.zshrc.dancer'
 alias tks='tmux kill-server'
 alias v='nvim'
 alias zc='v ~/.zshrc'
-alias setproxy="export ALL_PROXY=socks5://127.0.0.1:1080"
+alias setproxy="export ALL_PROXY=socks5://127.0.0.1:1090"
 alias unsetproxy="unset ALL_PROXY"
 alias t='tmux'
 alias ta='tmux attach -t'
 alias ssh='ssh -X'
 alias cona='conda activate'
 alias cond='conda deactivate'
+alias hl_kid='cd ~/GameController/build/jar && java -jar GameController.jar'
 . $HOME/miniconda2/etc/profile.d/conda.sh
 # Path for cuda
-export LD_LIBRARY_PATH=/usr/local/cuda-9.0/lib64:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64:/usr/local/cuda-9.0/lib64:$LD_LIBRARY_PATH
 export PATH=/usr/local/cuda-9.0/bin:$PATH
