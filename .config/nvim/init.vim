@@ -8,6 +8,14 @@ set smartindent
 set copyindent
 autocmd CompleteDone * if pumvisible() == 0 | pclose | endif
 
+"Return to last edit position when opening files
+augroup lastpos:
+    autocmd BufReadPost *
+                \ if line("'\"") > 0 && line("'\"") <= line("$") |
+                \   exe "normal! g`\"" |
+                \ endif
+augroup END
+
 " Auto format
 " let g:autoformat_autoindent = 0
 " let g:autoformat_retab = 0

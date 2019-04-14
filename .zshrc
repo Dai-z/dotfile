@@ -131,7 +131,7 @@ alias sd='source $HOME/dancer-workspace/.zshrc.dancer'
 alias tks='tmux kill-server'
 alias v='nvim'
 alias zc='v ~/.zshrc'
-alias setproxy="export ALL_PROXY=socks5://127.0.0.1:1090"
+alias setproxy="export ALL_PROXY=socks5://127.0.0.1:2170"
 alias unsetproxy="unset ALL_PROXY"
 alias t='tmux'
 alias ta='tmux attach -t'
