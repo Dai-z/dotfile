@@ -70,10 +70,17 @@ if dein#load_state('/home/daiz/.local/share/dein')
         call dein#add('roxma/nvim-yarp')
         call dein#add('roxma/vim-hug-neovim-rpc')
     endif
+    call dein#add('mhartington/oceanic-next')
+
 
     call dein#end()
     call dein#save_state()
 endif
 
 filetype plugin indent on
+" Color theme
+if (has("termguicolors"))
+    set termguicolors
+endif
 syntax enable
+colorscheme OceanicNext
