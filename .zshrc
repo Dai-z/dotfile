@@ -4,17 +4,16 @@ export PYTHONPATH=$PYTHONPATH:$HOME/caffe/python
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Path to your oh-my-zsh installation.
 
-# Set name of the theme to load. Optionally, if you set this to "random"
+# Set name of the theme to load. Optionally, If you set this to "random"
+ZSH_THEME="cxx"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 #ZSH_THEME="avit"
 #ZSH_THEME="steeef"
-ZSH_THEME="cxx"
 #ZSH_THEME="ys"
 
-# Uncomment the following line to use case-sensitive completion.
+# Uncomment the following line to use case_sensitive completion.
 # CASE_SENSITIVE="true"
 
 # Uncomment the following line to use hyphen-insensitive completion. Case
@@ -26,7 +25,6 @@ ZSH_THEME="cxx"
 
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
-
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
 
@@ -36,15 +34,15 @@ ZSH_THEME="cxx"
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
 
-# Uncomment the following line to display red dots whilst waiting for completion.
+# Uncomment the following line to display red dots whilst waiting for_ completion.
 # COMPLETION_WAITING_DOTS="true"
 
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
+# Uncomment the following line if_ you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for_ large repositories
 # much, much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-# Uncomment the following line if you want to change the command execution time
+# Uncomment the following line if_ you want to change the command execution time
 # stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # HIST_STAMPS="mm/dd/yyyy"
@@ -68,11 +66,11 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+    # if [[ -n $SSH_CONNECTION ]]; then
+        #   export EDITOR='vim'
+        # else
+            #   export EDITOR='mvim'
+            # fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -104,7 +102,16 @@ rto () {
 export ZJUDANCER_ROBOTID=2
 export ZJUDANCER_GUI=1
 export ZJUDANCER_GPU=0
-export EDITOR='nvim'
+
+# Set proper editor
+if [ -x "$(command -v nvim)" ] ; then
+    export EDITOR='nvim'
+elif [ -x "$(command -v vim)" ] ; then
+    export EDITOR='vim'
+else
+    export EDOTOR='vi'
+fi
+
 export TERM=xterm-256color
 # source $HOME/humanoid/devel/setup.zsh
 # source $HOME/humanoid-lib/devel/setup.zsh
@@ -132,7 +139,11 @@ alias ssh='ssh -X'
 alias cona='conda activate'
 alias cond='conda deactivate'
 alias hl_kid='cd ~/GameController/build/jar && java -jar GameController.jar'
-. $HOME/miniconda2/etc/profile.d/conda.sh
-# Path for cuda
+
+if [ -e "$HOME/miniconda2/etc/profile.d/conda.sh" ] ; then
+    . $HOME/miniconda2/etc/profile.d/conda.sh
+fi
+
+# Cuda path
 export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64:/usr/local/cuda-9.0/lib64:$LD_LIBRARY_PATH
 export PATH=/usr/local/cuda-9.0/bin:$PATH
