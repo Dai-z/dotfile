@@ -127,7 +127,11 @@ alias rl='roslaunch'
 alias rr='rosrun'
 alias sc='source ~/.zshrc'
 alias sr='source /opt/ros/kinetic/setup.zsh'
-alias sd='source $HOME/dancer-workspace/.zshrc.dancer'
+if [ -f "$(command -v nvim)" ] ; then
+    alias sd='source $HOME/dancer-workspace/.zshrc.dancer'
+else
+    alias sd='source /opt/ros/kinetic/setup.zsh'
+fi
 alias tks='tmux kill-server'
 alias v='nvim'
 alias zc='v ~/.zshrc'
@@ -139,11 +143,12 @@ alias ssh='ssh -X'
 alias cona='conda activate'
 alias cond='conda deactivate'
 alias hl_kid='cd ~/GameController/build/jar && java -jar GameController.jar'
+alias see_temp='cat /sys/devices/virtual/thermal/thermal_zone*/temp'
 
 if [ -e "$HOME/miniconda2/etc/profile.d/conda.sh" ] ; then
     . $HOME/miniconda2/etc/profile.d/conda.sh
 fi
 
 # Cuda path
-export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64:/usr/local/cuda-9.0/lib64:$LD_LIBRARY_PATH
-export PATH=/usr/local/cuda-9.0/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64:/usr/local/cuda/lib64:$LD_LIBRARY_PATH
+export PATH=/usr/local/cuda/bin:$PATH
