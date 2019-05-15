@@ -129,7 +129,11 @@ alias sc='source ~/.zshrc'
 alias sr='source /opt/ros/kinetic/setup.zsh'
 alias sd='source $HOME/dancer-workspace/.zshrc.dancer'
 alias tks='tmux kill-server'
-alias v='nvim'
+if [ -x "$(command -v nvim)" ] ; then
+    alias v='nvim'
+else
+    alias v='vim'
+fi
 alias zc='v ~/.zshrc'
 alias setproxy="export ALL_PROXY=socks5://127.0.0.1:2170"
 alias unsetproxy="unset ALL_PROXY"
@@ -140,10 +144,10 @@ alias cona='conda activate'
 alias cond='conda deactivate'
 alias hl_kid='cd ~/GameController/build/jar && java -jar GameController.jar'
 
-if [ -e "$HOME/miniconda2/etc/profile.d/conda.sh" ] ; then
-    . $HOME/miniconda2/etc/profile.d/conda.sh
+if [ -e "$HOME/miniconda3/etc/profile.d/conda.sh" ] ; then
+    . $HOME/miniconda3/etc/profile.d/conda.sh
 fi
 
 # Cuda path
-export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64:/usr/local/cuda-9.0/lib64:$LD_LIBRARY_PATH
-export PATH=/usr/local/cuda-9.0/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
+export PATH=/usr/local/cuda/bin:$PATH
