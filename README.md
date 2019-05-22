@@ -13,3 +13,4 @@ some config in ubuntu
 - [ ] Install gitkraken
 - [ ] Install Typora
 - [ ] Install chrome
+- [ ] Install kazam
