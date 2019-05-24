@@ -14,3 +14,8 @@ some config in ubuntu
 - [ ] Install Typora
 - [ ] Install chrome
 - [ ] Install kazam
+- [ ] Install neovim
+- [ ] GPU
+  - [ ] cuda
+  - [ ] cudnn
+  - [ ] tensorRT
