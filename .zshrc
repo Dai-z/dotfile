@@ -134,7 +134,11 @@ else
     alias sd='source /opt/ros/kinetic/setup.zsh'
 fi
 alias tks='tmux kill-server'
-alias v='nvim'
+if [ -x "$(command -v nvim)" ] ; then
+    alias v='nvim'
+else
+    alias v='vim'
+fi
 alias zc='v ~/.zshrc'
 alias setproxy="export ALL_PROXY=socks5://127.0.0.1:2170"
 alias unsetproxy="unset ALL_PROXY"
