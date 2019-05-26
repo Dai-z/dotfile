@@ -85,15 +85,16 @@ source $ZSH/oh-my-zsh.sh
 #
 rto () {
     dsthost=$1
-    port=$2
     relpath=$(pwd | sed "s#$HOME#\$HOME#g")
     parentdir=$(dirname $(pwd) | sed "s#$HOME#\$HOME#g")
 
     echo "rsync $relpath to $dsthost:$relpath ..."
     if [ -e "$(pwd)/exclude.txt" ] ; then
-        rsync -avzP --exclude-from="$(pwd)/exclude.txt" -e "ssh -p $port" $(pwd) $dsthost:$parentdir
+        rsync -avzP --exclude-from="$(pwd)/exclude.txt" $(pwd) $dsthost:$parentdir
+    elif [ -e "$(pwd)/.gitignore" ] ; then
+        rsync -avzP --exclude-from="$(pwd)/.gitignore" $(pwd) $dsthost:$parentdir
     else
-        rsync -avzP -e "ssh -p $port" $(pwd) $dsthost:$parentdir
+        rsync -avzP $(pwd) $dsthost:$parentdir
     fi
 }
 
@@ -145,10 +146,11 @@ alias cond='conda deactivate'
 alias hl_kid='cd ~/GameController/build/jar && java -jar GameController.jar'
 alias see_temp='cat /sys/devices/virtual/thermal/thermal_zone*/temp'
 
-if [ -e "$HOME/miniconda2/etc/profile.d/conda.sh" ] ; then
-    . $HOME/miniconda2/etc/profile.d/conda.sh
+if [ -e "$HOME/miniconda3/etc/profile.d/conda.sh" ] ; then
+    . $HOME/miniconda3/etc/profile.d/conda.sh
 fi
 
 # Cuda path
-export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64:/usr/local/cuda/lib64:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
 export PATH=/usr/local/cuda/bin:$PATH
+export PATH=/usr/local/texlive/2019/bin/x86_64-linux:$PATH
