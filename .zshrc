@@ -85,15 +85,14 @@ source $ZSH/oh-my-zsh.sh
 #
 rto () {
     dsthost=$1
-    port=$2
     relpath=$(pwd | sed "s#$HOME#\$HOME#g")
     parentdir=$(dirname $(pwd) | sed "s#$HOME#\$HOME#g")
 
     echo "rsync $relpath to $dsthost:$relpath ..."
     if [ -e "$(pwd)/exclude.txt" ] ; then
-        rsync -avzP --exclude-from="$(pwd)/exclude.txt" -e "ssh -p $port" $(pwd) $dsthost:$parentdir
+        rsync -avzP --exclude-from="$(pwd)/exclude.txt" $(pwd) $dsthost:$parentdir
     else
-        rsync -avzP -e "ssh -p $port" $(pwd) $dsthost:$parentdir
+        rsync -avzP $(pwd) $dsthost:$parentdir
     fi
 }
 
@@ -142,6 +141,8 @@ alias ta='tmux attach -t'
 alias ssh='ssh -X'
 alias cona='conda activate'
 alias cond='conda deactivate'
+alias acs='apt-cache search'
+alias agi='sudo apt-get install'
 alias hl_kid='cd ~/GameController/build/jar && java -jar GameController.jar'
 
 if [ -e "$HOME/miniconda3/etc/profile.d/conda.sh" ] ; then
@@ -151,3 +152,5 @@ fi
 # Cuda path
 export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
 export PATH=/usr/local/cuda/bin:$PATH
+# Latex path
+export PATH=/usr/local/texlive/2019/bin/x86_64-linux:$PATH
