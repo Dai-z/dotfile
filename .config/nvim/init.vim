@@ -6,6 +6,13 @@ set autoindent
 set autoindent              " Carry over indenting from previous line
 set smartindent
 set copyindent
+set number
+
+" add yaml stuffs
+au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType vim,tex,yaml,txt let b:autoformat_autoindent=0
+
 autocmd CompleteDone * if pumvisible() == 0 | pclose | endif
 
 "Return to last edit position when opening files
@@ -70,8 +77,9 @@ if dein#load_state('/home/daiz/.local/share/dein')
         call dein#add('roxma/nvim-yarp')
         call dein#add('roxma/vim-hug-neovim-rpc')
     endif
-    call dein#add('mhartington/oceanic-next')
 
+    call dein#add('vim-airline/vim-airline')
+    call dein#add('mhartington/oceanic-next')
 
     call dein#end()
     call dein#save_state()
@@ -84,3 +92,4 @@ if (has("termguicolors"))
 endif
 syntax enable
 colorscheme OceanicNext
+let g:airline_theme='oceanicnext'

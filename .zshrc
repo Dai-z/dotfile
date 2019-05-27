@@ -91,6 +91,8 @@ rto () {
     echo "rsync $relpath to $dsthost:$relpath ..."
     if [ -e "$(pwd)/exclude.txt" ] ; then
         rsync -avzP --exclude-from="$(pwd)/exclude.txt" $(pwd) $dsthost:$parentdir
+    elif [ -e "$(pwd)/.gitignore" ] ; then
+        rsync -avzP --exclude-from="$(pwd)/.gitignore" $(pwd) $dsthost:$parentdir
     else
         rsync -avzP $(pwd) $dsthost:$parentdir
     fi
@@ -126,7 +128,11 @@ alias rl='roslaunch'
 alias rr='rosrun'
 alias sc='source ~/.zshrc'
 alias sr='source /opt/ros/kinetic/setup.zsh'
-alias sd='source $HOME/dancer-workspace/.zshrc.dancer'
+if [ -f "$HOME/dancer-workspace/.zshrc.dancer" ] ; then
+    alias sd='source $HOME/dancer-workspace/.zshrc.dancer'
+else
+    alias sd='source /opt/ros/kinetic/setup.zsh'
+fi
 alias tks='tmux kill-server'
 if [ -x "$(command -v nvim)" ] ; then
     alias v='nvim'
@@ -144,6 +150,7 @@ alias cond='conda deactivate'
 alias acs='apt-cache search'
 alias agi='sudo apt-get install'
 alias hl_kid='cd ~/GameController/build/jar && java -jar GameController.jar'
+alias see_temp='cat /sys/devices/virtual/thermal/thermal_zone*/temp'
 
 if [ -e "$HOME/miniconda3/etc/profile.d/conda.sh" ] ; then
     . $HOME/miniconda3/etc/profile.d/conda.sh
