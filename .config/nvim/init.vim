@@ -28,6 +28,9 @@ augroup END
 " let g:autoformat_retab = 0
 " let g:autoformat_remove_trailing_spaces = 0
 " au BufWrite * :Autoformat
+
+" Format
+noremap <F3> :Autoformat<CR>
 let g:formatters_cpp = ['yapf']
 let g:formatter_yapf_style = 'google'
 let g:formatdef_google = '"clang-format -style=Google"'
