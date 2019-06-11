@@ -149,6 +149,7 @@ alias cona='conda activate'
 alias cond='conda deactivate'
 alias acs='apt-cache search'
 alias agi='sudo apt-get install'
+alias agu='sudo apt-get update'
 alias hl_kid='cd ~/GameController/build/jar && java -jar GameController.jar'
 alias see_temp='cat /sys/devices/virtual/thermal/thermal_zone*/temp'
 
