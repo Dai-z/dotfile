@@ -98,6 +98,23 @@ rto () {
     fi
 }
 
+# rsync from source host
+rfrom () {
+  dsthost=$1
+  relpath=$(pwd | sed "s#$HOME#\$HOME#g")
+  parentdir=$(dirname $(pwd))
+
+  echo "rsync $relpath from $dsthost:$relpath ..."
+  if [ -e "$(pwd)/exclude.txt" ] ; then
+    rsync -avzP --exclude-from="$(pwd)/exclude.txt" ${dsthost}:${relpath} ${parentdir}
+  elif [ -e "$(pwd)/.gitignore" ] ; then
+    rsync -avzP --filter=":- $(pwd)/.gitignore" ${dsthost}:${relpath} ${parentdir}
+  else
+    rsync -avzP ${dsthost}:${relpath} ${parentdir}
+  fi
+}
+
+
 #ROS
 # source /opt/ros/kinetic/setup.zsh
 export ZJUDANCER_ROBOTID=2
