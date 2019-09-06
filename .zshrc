@@ -54,7 +54,7 @@ ZSH_THEME="cxx"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting sudo)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -114,6 +114,17 @@ rfrom () {
   fi
 }
 
+list_depends() {
+    debname=$1
+    apt-cache depends --recurse --no-recommends --no-suggests --no-conflicts --no-breaks --no-replaces --no-enhances ${debname} | grep "^\w" | sort -u
+}
+
+dl_depends() {
+    debname=$1
+    # apt-get download $(list_depends(${debname}))
+    apt-get download $(apt-cache depends --recurse --no-recommends --no-suggests --no-conflicts --no-breaks --no-replaces --no-enhances ${debname} | grep "^\w" | sort -u)
+    dpkg-scanpackages . | gzip -9c > Packages.gz
+}
 
 #ROS
 # source /opt/ros/kinetic/setup.zsh
@@ -145,6 +156,7 @@ alias rl='roslaunch'
 alias rr='rosrun'
 alias sc='source ~/.zshrc'
 alias sr='source /opt/ros/kinetic/setup.zsh'
+alias ssr='source ./devel/setup.zsh'
 if [ -f "$HOME/dancer-workspace/.zshrc.dancer" ] ; then
     alias sd='source $HOME/dancer-workspace/.zshrc.dancer'
 else
