@@ -146,22 +146,36 @@ export TERM=xterm-256color
 # source $HOME/humanoid-lib/devel/setup.zsh
 # source $HOME/dancer-workspace/workspaces/core/devel/setup.zsh
 # source $HOME/dancer-workspace/.zshrc.dancer
-alias rcd='roscd'
-alias e='rosed'
-alias rmk='catkin_make -j4'
-alias rt="catkin_make run_tests"
-alias rpkg='catkin_create_pkg'
-alias rcore='roscore &'
-alias rl='roslaunch'
-alias rr='rosrun'
-alias sc='source ~/.zshrc'
-alias sr='source /opt/ros/kinetic/setup.zsh'
+export ROS_VERSION=2
+if [ ${ROS_VERSION} = 1 ]; then
+    alias sr='source /opt/ros/kinetic/setup.zsh'
+    alias rcd='roscd'
+    alias e='rosed'
+    alias rmk='catkin_make -j4'
+    alias rt="catkin_make run_tests"
+    alias rpkg='catkin_create_pkg'
+    alias rcore='roscore &'
+    alias rl='roslaunch'
+    alias rr='rosrun'
+else
+    alias sr='source /opt/ros/ardent/setup.zsh'
+    alias rcd='roscd'
+    alias e='rosed'
+    alias rmk='colcon build --symlink-install'
+    # alias rt="catkin_make run_tests"
+    alias rpkg='ros2 pkg create'
+    # alias rcore='roscore &'
+    alias rl='roslaunch'
+    alias rr='ros2 run'
+fi
 alias ssr='source ./devel/setup.zsh'
 if [ -f "$HOME/dancer-workspace/.zshrc.dancer" ] ; then
     alias sd='source $HOME/dancer-workspace/.zshrc.dancer'
 else
     alias sd='source /opt/ros/kinetic/setup.zsh'
 fi
+
+alias sc='source ~/.zshrc'
 alias tks='tmux kill-server'
 if [ -x "$(command -v nvim)" ] ; then
     alias v='nvim'
