@@ -15,6 +15,10 @@ some config in ubuntu
 - [ ] Install chrome
 - [ ] Install kazam
 - [ ] Install neovim
+- [ ] install hydra paper
+- [ ] install VPN
+  - [ ] ssr
+  - [ ] V2Ray
 - [ ] GPU
   - [ ] cuda
   - [ ] cudnn
