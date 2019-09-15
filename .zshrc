@@ -157,13 +157,11 @@ else
 fi
 
 export TERM=xterm-256color
-# source $HOME/humanoid/devel/setup.zsh
-# source $HOME/humanoid-lib/devel/setup.zsh
-# source $HOME/dancer-workspace/workspaces/core/devel/setup.zsh
-# source $HOME/dancer-workspace/.zshrc.dancer
-export ROS_VERSION=2
+
+# ROS
+export ROS_VERSION='kinetic'
 if [ ${ROS_VERSION} = 1 ]; then
-    alias sr='source /opt/ros/kinetic/setup.zsh'
+    alias sr='source /opt/ros/${ROS_VERSION}/setup.zsh'
     alias rcd='roscd'
     alias e='rosed'
     alias rmk='catkin_make -j4'
@@ -173,7 +171,7 @@ if [ ${ROS_VERSION} = 1 ]; then
     alias rl='roslaunch'
     alias rr='rosrun'
 else
-    alias sr='source /opt/ros/ardent/setup.zsh'
+    alias sr='source /opt/ros/${ROS_VERSION}/setup.zsh'
     alias rcd='roscd'
     alias e='rosed'
     alias rmk='colcon build --symlink-install'
@@ -187,7 +185,7 @@ alias ssr='source ./devel/setup.zsh'
 if [ -f "$HOME/dancer-workspace/.zshrc.dancer" ] ; then
     alias sd='source $HOME/dancer-workspace/.zshrc.dancer'
 else
-    alias sd='source /opt/ros/melodic/setup.zsh'
+    alias sd='source /opt/ros/${ROS_VERSION}/setup.zsh'
 fi
 
 alias sc='source ~/.zshrc'
