@@ -113,6 +113,34 @@ rfrom () {
   fi
 }
 
+# rsync from source host
+rfrom () {
+  dsthost=$1
+  relpath=$(pwd | sed "s#$HOME#\$HOME#g")
+  parentdir=$(dirname $(pwd))
+
+  echo "rsync $relpath from $dsthost:$relpath ..."
+  if [ -e "$(pwd)/exclude.txt" ] ; then
+    rsync -avzP --exclude-from="$(pwd)/exclude.txt" ${dsthost}:${relpath} ${parentdir}
+  elif [ -e "$(pwd)/.gitignore" ] ; then
+    rsync -avzP --filter=":- $(pwd)/.gitignore" ${dsthost}:${relpath} ${parentdir}
+  else
+    rsync -avzP ${dsthost}:${relpath} ${parentdir}
+  fi
+}
+
+list_depends() {
+    debname=$1
+    apt-cache depends --recurse --no-recommends --no-suggests --no-conflicts --no-breaks --no-replaces --no-enhances ${debname} | grep "^\w" | sort -u
+}
+
+dl_depends() {
+    debname=$1
+    # apt-get download $(list_depends(${debname}))
+    apt-get download $(apt-cache depends --recurse --no-recommends --no-suggests --no-conflicts --no-breaks --no-replaces --no-enhances ${debname} | grep "^\w" | sort -u)
+    dpkg-scanpackages . | gzip -9c > Packages.gz
+}
+
 #ROS
 # source /opt/ros/kinetic/setup.zsh
 export ZJUDANCER_ROBOTID=2
@@ -133,21 +161,36 @@ export TERM=xterm-256color
 # source $HOME/humanoid-lib/devel/setup.zsh
 # source $HOME/dancer-workspace/workspaces/core/devel/setup.zsh
 # source $HOME/dancer-workspace/.zshrc.dancer
-alias rcd='roscd'
-alias e='rosed'
-alias rmk='catkin_make -j4'
-alias rt="catkin_make run_tests"
-alias rpkg='catkin_create_pkg'
-alias rcore='roscore &'
-alias rl='roslaunch'
-alias rr='rosrun'
-alias sc='source ~/.zshrc'
-alias sr='source /opt/ros/kinetic/setup.zsh'
+export ROS_VERSION=2
+if [ ${ROS_VERSION} = 1 ]; then
+    alias sr='source /opt/ros/kinetic/setup.zsh'
+    alias rcd='roscd'
+    alias e='rosed'
+    alias rmk='catkin_make -j4'
+    alias rt="catkin_make run_tests"
+    alias rpkg='catkin_create_pkg'
+    alias rcore='roscore &'
+    alias rl='roslaunch'
+    alias rr='rosrun'
+else
+    alias sr='source /opt/ros/ardent/setup.zsh'
+    alias rcd='roscd'
+    alias e='rosed'
+    alias rmk='colcon build --symlink-install'
+    # alias rt="catkin_make run_tests"
+    alias rpkg='ros2 pkg create'
+    # alias rcore='roscore &'
+    alias rl='roslaunch'
+    alias rr='ros2 run'
+fi
+alias ssr='source ./devel/setup.zsh'
 if [ -f "$HOME/dancer-workspace/.zshrc.dancer" ] ; then
     alias sd='source $HOME/dancer-workspace/.zshrc.dancer'
 else
     alias sd='source /opt/ros/melodic/setup.zsh'
 fi
+
+alias sc='source ~/.zshrc'
 alias tks='tmux kill-server'
 if [ -x "$(command -v nvim)" ] ; then
     alias v='nvim'
