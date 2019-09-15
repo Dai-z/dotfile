@@ -1,6 +1,5 @@
 export ZSH=$HOME/.oh-my-zsh
 export PATH=$PATH:~/.local/bin:/usr/java/bin #:$HOME/miniconda2/bin
-export PYTHONPATH=$PYTHONPATH:$HOME/caffe/python
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -54,7 +53,8 @@ ZSH_THEME="cxx"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting
+         zsh-completions sudo)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -97,6 +97,21 @@ rto () {
         rsync -avzP $(pwd) $dsthost:$parentdir
     fi
 }
+# rsync from source host
+rfrom () {
+  dsthost=$1
+  relpath=$(pwd | sed "s#$HOME#\$HOME#g")
+  parentdir=$(dirname $(pwd))
+
+  _log_status "rsync $relpath from $dsthost:$relpath ..."
+  if [ -e "$(pwd)/exclude.txt" ] ; then
+    rsync -avzP --exclude-from="$(pwd)/exclude.txt" ${dsthost}:${relpath} ${parentdir}
+  elif [ -e "$(pwd)/.gitignore" ] ; then
+    rsync -avzP --filter=":- $(pwd)/.gitignore" ${dsthost}:${relpath} ${parentdir}
+  else
+    rsync -avzP ${dsthost}:${relpath} ${parentdir}
+  fi
+}
 
 #ROS
 # source /opt/ros/kinetic/setup.zsh
@@ -131,7 +146,7 @@ alias sr='source /opt/ros/kinetic/setup.zsh'
 if [ -f "$HOME/dancer-workspace/.zshrc.dancer" ] ; then
     alias sd='source $HOME/dancer-workspace/.zshrc.dancer'
 else
-    alias sd='source /opt/ros/kinetic/setup.zsh'
+    alias sd='source /opt/ros/melodic/setup.zsh'
 fi
 alias tks='tmux kill-server'
 if [ -x "$(command -v nvim)" ] ; then
