@@ -161,7 +161,7 @@ export TERM=xterm-256color
 # ROS
 export ROS_VER='melodic'
 if [[ ${ROS_VER} = 'kinetic' || ${ROS_VER} = 'melodic' ]]; then
-    alias sr='source /opt/ros/${ROS_VERSION}/setup.zsh'
+    alias sr='source /opt/ros/${ROS_VER}/setup.zsh'
     alias rcd='roscd'
     alias e='rosed'
     alias rmk='catkin_make -j4'
@@ -171,7 +171,7 @@ if [[ ${ROS_VER} = 'kinetic' || ${ROS_VER} = 'melodic' ]]; then
     alias rl='roslaunch'
     alias rr='rosrun'
 else
-    alias sr='source /opt/ros/${ROS_VERSION}/setup.zsh'
+    alias sr='source /opt/ros/${ROS_VER}/setup.zsh'
     alias rcd='roscd'
     alias e='rosed'
     alias rmk='colcon build --symlink-install'
@@ -196,8 +196,8 @@ else
     alias v='vim'
 fi
 alias zc='v ~/.zshrc'
-alias setproxy="export ALL_PROXY=socks5://127.0.0.1:2170"
-alias unsetproxy="unset ALL_PROXY"
+alias setproxy="export http_proxy=http://127.0.0.1:21170/ && export https_proxy=http://127.0.0.1:21170/ "
+alias unsetproxy="unset http_proxy && unset https_proxy"
 alias t='tmux'
 alias ta='tmux attach -t'
 alias ssh='ssh -X'
