@@ -1,5 +1,5 @@
 export ZSH=$HOME/.oh-my-zsh
-export PATH=$PATH:~/.local/bin:/usr/java/bin #:$HOME/miniconda2/bin
+export PATH=$PATH:/usr/java/bin #:$HOME/miniconda2/bin
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -159,8 +159,8 @@ fi
 export TERM=xterm-256color
 
 # ROS
-export ROS_VERSION='kinetic'
-if [ ${ROS_VERSION} = 1 ]; then
+export ROS_VER='melodic'
+if [[ ${ROS_VER} = 'kinetic' || ${ROS_VER} = 'melodic' ]]; then
     alias sr='source /opt/ros/${ROS_VERSION}/setup.zsh'
     alias rcd='roscd'
     alias e='rosed'
@@ -218,3 +218,4 @@ export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
 export PATH=/usr/local/cuda/bin:$PATH
 # Latex path
 export PATH=/usr/local/texlive/2019/bin/x86_64-linux:$PATH
+export QT_QPA_PLATFORMTHEME=gtk2
