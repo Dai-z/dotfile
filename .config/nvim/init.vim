@@ -7,6 +7,7 @@ set autoindent              " Carry over indenting from previous line
 set smartindent
 set copyindent
 set number
+set clipboard=unnamedplus
 
 " add yaml stuffs
 au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml
