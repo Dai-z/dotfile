@@ -208,13 +208,15 @@ alias agi='sudo apt-get install'
 alias agu='sudo apt-get update'
 alias hl_kid='cd ~/GameController/build/jar && java -jar GameController.jar'
 alias see_temp='cat /sys/devices/virtual/thermal/thermal_zone*/temp'
+alias py='python'
+alias py3='python3'
 
 if [ -e "$HOME/miniconda3/etc/profile.d/conda.sh" ] ; then
     . $HOME/miniconda3/etc/profile.d/conda.sh
 fi
 
 # Cuda path
-export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/local/lib:$LD_LIBRARY_PATH
 export PATH=/usr/local/cuda/bin:$PATH
 # Latex path
 export PATH=/usr/local/texlive/2019/bin/x86_64-linux:$PATH
