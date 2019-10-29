@@ -196,8 +196,6 @@ else
     alias v='vim'
 fi
 alias zc='v ~/.zshrc'
-alias setproxy="export http_proxy=http://127.0.0.1:21170/ && export https_proxy=http://127.0.0.1:21170/ "
-alias unsetproxy="unset http_proxy && unset https_proxy"
 alias t='tmux'
 alias ta='tmux attach -t'
 alias ssh='ssh -X'
@@ -206,8 +204,8 @@ alias cond='conda deactivate'
 alias acs='apt-cache search'
 alias agi='sudo apt-get install'
 alias agu='sudo apt-get update'
-alias hl_kid='cd ~/GameController/build/jar && java -jar GameController.jar'
-alias see_temp='cat /sys/devices/virtual/thermal/thermal_zone*/temp'
+alias hl-kid='cd ~/GameController/build/jar && java -jar GameController.jar'
+alias see-temp='cat /sys/devices/virtual/thermal/thermal_zone*/temp'
 alias py='python'
 alias py3='python3'
 
@@ -221,3 +219,8 @@ export PATH=/usr/local/cuda/bin:$PATH
 # Latex path
 export PATH=/usr/local/texlive/2019/bin/x86_64-linux:$PATH
 export QT_QPA_PLATFORMTHEME=gtk2
+# Proxy
+alias setproxy="export http_proxy=http://127.0.0.1:21170/ && export https_proxy=http://127.0.0.1:21170/ "
+alias unsetproxy="unset http_proxy && unset https_proxy"
+alias ssh-socks5='export GIT_SSH="$HOME/.ssh/socks5.sh"'
+alias ssh-direct='unset GIT_SSH'
