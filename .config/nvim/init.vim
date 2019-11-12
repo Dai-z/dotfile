@@ -8,6 +8,7 @@ set smartindent
 set copyindent
 set number
 set clipboard=unnamedplus
+set relativenumber
 
 " add yaml stuffs
 au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml
