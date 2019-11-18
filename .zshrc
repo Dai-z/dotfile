@@ -145,7 +145,7 @@ dl_depends() {
 # source /opt/ros/kinetic/setup.zsh
 export ZJUDANCER_ROBOTID=2
 export ZJUDANCER_GUI=1
-export ZJUDANCER_GPU=0
+export ZJUDANCER_GPU=1
 
 # Set proper editor
 if [ -x "$(command -v nvim)" ] ; then
@@ -185,7 +185,7 @@ alias ssr='source ./devel/setup.zsh'
 if [ -f "$HOME/dancer-workspace/.zshrc.dancer" ] ; then
     alias sd='source $HOME/dancer-workspace/.zshrc.dancer'
 else
-    alias sd='source /opt/ros/${ROS_VERSION}/setup.zsh'
+    alias sd='source /opt/ros/${ROS_VER}/setup.zsh'
 fi
 
 alias sc='source ~/.zshrc'
@@ -224,3 +224,14 @@ alias setproxy="export http_proxy=http://127.0.0.1:21170/ && export https_proxy=
 alias unsetproxy="unset http_proxy && unset https_proxy"
 alias ssh-socks5='export GIT_SSH="$HOME/.ssh/socks5.sh"'
 alias ssh-direct='unset GIT_SSH'
+
+glall() {
+    for dirlist in $(ls) ; do
+        if [ -d ${dirlist} ] ; then
+            cd ${dirlist}
+            echo "\nPulling in $(pwd)"
+            git pull
+            cd ..
+        fi
+    done
+}
