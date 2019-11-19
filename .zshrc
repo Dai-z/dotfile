@@ -224,13 +224,24 @@ alias setproxy="export http_proxy=http://127.0.0.1:21170/ && export https_proxy=
 alias unsetproxy="unset http_proxy && unset https_proxy"
 alias ssh-socks5='export GIT_SSH="$HOME/.ssh/socks5.sh"'
 alias ssh-direct='unset GIT_SSH'
+alias usv='cd ~/Repo/usv_ws && ssr && rl usv_path usv.launch'
 
-glall() {
+gldir() {
     for dirlist in $(ls) ; do
         if [ -d ${dirlist} ] ; then
             cd ${dirlist}
-            echo "\nPulling in $(pwd)"
+            echo "\033[36mPulling in ${dirlist}\033[0m"
             git pull
+            cd ..
+        fi
+    done
+}
+gstdir() {
+    for dirlist in $(ls) ; do
+        if [ -d ${dirlist} ] ; then
+            cd ${dirlist}
+            echo "\033[36mStatus in ${dirlist}\033[0m"
+            git status
             cd ..
         fi
     done
