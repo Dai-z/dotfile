@@ -1,9 +1,11 @@
 [Unit]
 Description=Daemon for synergy on lock and unlock
-After=syslog.target
-Wants=syslog.target
+After=syslog.target network.target gdm.service gdm3.service
+Wants=gdm.service
 
 [Service]
+User=daiz
+Group=daiz
 Type=simple
 WorkingDirectory=/etc/daiz-lock
 ExecStart=/etc/daiz-lock/synergy-on-lock.sh

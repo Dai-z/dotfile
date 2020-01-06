@@ -9,7 +9,7 @@ gdbus monitor -y -d org.freedesktop.login1 |
           killall synergy > /dev/null 2> /dev/null
       else
           status "Start synergy on unlock"
-          synergys
+          /usr/bin/synergys -f --no-tray --debug DEBUG --name daiz-PC --enable-crypto --address :24800 -l /tmp/fuck.log --display :1
       fi
     fi
   done
