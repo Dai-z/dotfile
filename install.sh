@@ -8,4 +8,5 @@ cp -avr ./.tmux.conf $HOME/ --parents
 sudo cp -avr ./.synergy.conf /etc/synergy.conf
 sudo cp -avr ./service/daiz-lock /etc
 sudo cp -avr ./service/*.service /etc/systemd/system
+sudo systemctl daemon-reload && sudo systemctl start synergy_on_lock.service
 
