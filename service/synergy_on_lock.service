@@ -1,0 +1,15 @@
+[Unit]
+Description=Daemon for synergy on lock and unlock
+After=syslog.target
+Wants=syslog.target
+
+[Service]
+Type=simple
+WorkingDirectory=/etc/daiz-lock
+ExecStart=/etc/daiz-lock/synergy-on-lock.sh
+Restart=always
+RestartSec=1min
+ExecStop=/usr/bin/killall synergy-on-lock.sh
+
+[Install]
+WantedBy=multi-user.target
