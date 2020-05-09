@@ -187,6 +187,7 @@ if [ -f "$HOME/dancer-workspace/.zshrc.dancer" ] ; then
 else
     alias sd='source /opt/ros/${ROS_VER}/setup.zsh'
 fi
+alias hl-kid='cd ~/GameController/build/jar && java -jar GameController.jar'
 
 alias sc='source ~/.zshrc'
 alias tks='tmux kill-server'
@@ -199,19 +200,28 @@ alias zc='v ~/.zshrc'
 alias t='tmux'
 alias ta='tmux attach -t'
 alias ssh='ssh -X'
+# Conda
 alias cona='conda activate'
 alias cond='conda deactivate'
-alias acs='apt-cache search'
-alias agi='sudo apt-get install'
-alias agu='sudo apt-get update'
-alias hl-kid='cd ~/GameController/build/jar && java -jar GameController.jar'
-alias see-temp='cat /sys/devices/virtual/thermal/thermal_zone*/temp'
-alias py='python'
-alias py3='python3'
-
 if [ -e "$HOME/miniconda3/etc/profile.d/conda.sh" ] ; then
     . $HOME/miniconda3/etc/profile.d/conda.sh
 fi
+
+# apt
+alias acs='apt-cache search'
+alias agi='sudo apt-get install'
+alias agu='sudo apt-get update'
+alias see-temp='cat /sys/devices/virtual/thermal/thermal_zone*/temp'
+alias py='python'
+alias py3='python3'
+alias cursor='echo -en "\e[?25h'
+
+# Proxy
+alias setproxy="export http_proxy=http://127.0.0.1:21170/ && export https_proxy=http://127.0.0.1:21170/ "
+alias unsetproxy="unset http_proxy && unset https_proxy"
+alias ssh-socks5='export GIT_SSH="$HOME/.ssh/socks5.sh"'
+alias ssh-direct='unset GIT_SSH'
+alias usv='cd ~/Repo/usv_ws && ssr && rl usv_path usv.launch'
 
 # Cuda path
 export LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/local/lib:$LD_LIBRARY_PATH
@@ -219,12 +229,6 @@ export PATH=/usr/local/cuda/bin:$PATH
 # Latex path
 export PATH=/usr/local/texlive/2019/bin/x86_64-linux:$PATH
 export QT_QPA_PLATFORMTHEME=gtk2
-# Proxy
-alias setproxy="export http_proxy=http://127.0.0.1:21170/ && export https_proxy=http://127.0.0.1:21170/ "
-alias unsetproxy="unset http_proxy && unset https_proxy"
-alias ssh-socks5='export GIT_SSH="$HOME/.ssh/socks5.sh"'
-alias ssh-direct='unset GIT_SSH'
-alias usv='cd ~/Repo/usv_ws && ssr && rl usv_path usv.launch'
 
 gldir() {
     for dirlist in $(ls) ; do
