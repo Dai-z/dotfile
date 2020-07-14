@@ -141,6 +141,11 @@ dl_depends() {
     dpkg-scanpackages . | gzip -9c > Packages.gz
 }
 
+stderr() {
+    if [ -e "$HOME/Software/stderred/build/libstderred.so" ] ; then export LD_PRELOAD=$HOME/Software/stderred/build/libstderred.so:$LD_PRELOAD
+    fi
+}
+
 #ROS
 # source /opt/ros/kinetic/setup.zsh
 export ZJUDANCER_ROBOTID=2
@@ -214,14 +219,19 @@ alias agu='sudo apt-get update'
 alias see-temp='cat /sys/devices/virtual/thermal/thermal_zone*/temp'
 alias py='python'
 alias py3='python3'
-alias cursor='echo -en "\e[?25h'
+alias cursor='echo -en "\e[?25h"'
 
 # Proxy
-alias setproxy="export http_proxy=http://127.0.0.1:21170/ && export https_proxy=http://127.0.0.1:21170/ "
+alias setproxy="export http_proxy=http://127.0.0.1:21070/ && export https_proxy=http://127.0.0.1:21070/ "
 alias unsetproxy="unset http_proxy && unset https_proxy"
 alias ssh-socks5='export GIT_SSH="$HOME/.ssh/socks5.sh"'
 alias ssh-direct='unset GIT_SSH'
-alias usv='cd ~/Repo/usv_ws && ssr && rl usv_path usv.launch'
+
+# err color
+alias err='stderr'
+alias noerr='export LD_PRELOAD=""'
+
+alias search_cont='grep -rn . -e'
 
 # Cuda path
 export LD_LIBRARY_PATH=/usr/local/cuda/lib64:/usr/local/lib:$LD_LIBRARY_PATH
