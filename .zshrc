@@ -53,7 +53,8 @@ ZSH_THEME="cxx"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting
+plugins=(git docker docker-compose
+         zsh-autosuggestions zsh-syntax-highlighting
          zsh-completions sudo)
 
 source $ZSH/oh-my-zsh.sh
@@ -175,6 +176,7 @@ if [[ ${ROS_VER} = 'kinetic' || ${ROS_VER} = 'melodic' ]]; then
     alias rcore='roscore &'
     alias rl='roslaunch'
     alias rr='rosrun'
+    alias reo='rostopic echo'
 else
     alias sr='source /opt/ros/${ROS_VER}/setup.zsh'
     alias rcd='roscd'
@@ -211,6 +213,12 @@ alias cond='conda deactivate'
 if [ -e "$HOME/miniconda3/etc/profile.d/conda.sh" ] ; then
     . $HOME/miniconda3/etc/profile.d/conda.sh
 fi
+
+#docker
+alias dcp='docker container prune'
+alias dcpf='docker container prune -f'
+alias dli='docker images'
+alias dlc='docker container ls'
 
 # apt
 alias acs='apt-cache search'
