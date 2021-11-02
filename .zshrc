@@ -1,5 +1,6 @@
 export ZSH=$HOME/.oh-my-zsh
 export PATH=$PATH:/usr/java/bin #:$HOME/miniconda2/bin
+setopt no_nomatch
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -165,8 +166,8 @@ fi
 export TERM=xterm-256color
 
 # ROS
-export ROS_VER='melodic'
-if [[ ${ROS_VER} = 'kinetic' || ${ROS_VER} = 'melodic' ]]; then
+export ROS_VER='noetic'
+if [[ ${ROS_VER} = 'noetic' || ${ROS_VER} = 'melodic' ]]; then
     alias sr='source /opt/ros/${ROS_VER}/setup.zsh'
     alias rcd='roscd'
     alias e='rosed'
@@ -225,13 +226,19 @@ alias acs='apt-cache search'
 alias agi='sudo apt-get install'
 alias agu='sudo apt-get update'
 alias see-temp='cat /sys/devices/virtual/thermal/thermal_zone*/temp'
-alias py='python'
+alias py='python3'
+alias py2='python2'
 alias py3='python3'
+alias ipy='ipython'
 alias cursor='echo -en "\e[?25h"'
+alias daka='python3 ~/Workspace/ZJU-nCov-Hitcarder/daka.py --once'
+alias gpl='git pull'
+alias gpsh='git push'
 
 # Proxy
-alias setproxy="export http_proxy=http://127.0.0.1:21070/ && export https_proxy=http://127.0.0.1:21070/ "
+alias setproxy="export http_proxy=http://127.0.0.1:2340/ && export https_proxy=http://127.0.0.1:2340/ "
 alias unsetproxy="unset http_proxy && unset https_proxy"
+
 alias ssh-socks5='export GIT_SSH="$HOME/.ssh/socks5.sh"'
 alias ssh-direct='unset GIT_SSH'
 
